@@ -1,0 +1,30 @@
+--- gbs-control.sh.orig	2016-06-02 20:07:15.000000000 +0300
++++ gbs-control.sh	2016-06-02 22:34:10.000000000 +0300
+@@ -32,14 +32,19 @@
+ }
+ 
+ detect_revision() {
+-  REVISION=$(cat /proc/cpuinfo | grep revision)
+-  LEN=${#REVISION}
+-  POS=$((LEN -1))
+-  REV=${REVISION:POS}
+-  if [ "$REV" = "0" ] || [ "$REV" = "1" ]; then
+-    I2C_PORT=$((0))
+-  else
+-    I2C_PORT=$((1))
++  BANANA=$(cat /proc/cpuinfo | grep Hardware | awk '{ print $3 }' | tr -d '\n')
++  if ["$BANANA" = "sun7i"]; then
++	I2C_PORT=$((2))
++  elif
++	REVISION=$(cat /proc/cpuinfo | grep revision)
++	LEN=${#REVISION}
++	POS=$((LEN -1))
++	REV=${REVISION:POS}
++	if [ "$REV" = "0" ] || [ "$REV" = "1" ]; then
++		I2C_PORT=$((0))
++	else
++		I2C_PORT=$((1))
++	fi
+   fi
+ }
+ 

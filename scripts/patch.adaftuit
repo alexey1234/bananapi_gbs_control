@@ -1,0 +1,14 @@
+--- Adafruit_I2C.py.orig	2016-06-02 20:07:15.000000000 +0300
++++ Adafruit_I2C.py	2016-06-02 21:50:37.000000000 +0300
+@@ -32,8 +32,9 @@
+     # Alternatively, you can hard-code the bus version below:
+     # self.bus = smbus.SMBus(0); # Force I2C0 (early 256MB Pi's)
+     # self.bus = smbus.SMBus(1); # Force I2C1 (512MB Pi's)
+-    self.bus = smbus.SMBus(
+-      busnum if busnum >= 0 else Adafruit_I2C.getPiI2CBusNumber())
++    # self.bus = smbus.SMBus(2); # Force I2C2 (Banana Pi's)
++    self.bus = smbus.SMBus(2)
++    #  busnum if busnum >= 0 else Adafruit_I2C.getPiI2CBusNumber())
+     self.debug = debug
+ 
+   def reverseByteOrder(self, data):

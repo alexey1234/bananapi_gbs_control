@@ -1,0 +1,30 @@
+--- adaptive_deinterlace.sh,orig	2016-06-02 20:07:15.000000000 +0300
++++ adaptive_deinterlace.sh	2016-06-02 22:40:49.000000000 +0300
+@@ -2,14 +2,19 @@
+ END=$(sed -n 1p /home/pi/settings/defaults/end)
+ while [ "$END" == "false" ]; do
+   END=$(sed -n 1p /home/pi/settings/defaults/end)
+-  REVISION=$(cat /proc/cpuinfo | grep revision)
+-  LEN=${#REVISION}
+-  POS=$((LEN -1))
+-  REV=${REVISION:POS}
+-  if [ "$REV" = "0" ] || [ "$REV" = "1" ]; then
+-    I2C_PORT=$((0))
+-  else
+-    I2C_PORT=$((1))
++  BANANA=$(cat /proc/cpuinfo | grep Hardware | awk '{ print $3 }' | tr -d '\n')
++  if ["$BANANA" = "sun7i"]; then
++	I2C_PORT=$((2))
++  elif
++	REVISION=$(cat /proc/cpuinfo | grep revision)
++	LEN=${#REVISION}
++	POS=$((LEN -1))
++	REV=${REVISION:POS}
++	if [ "$REV" = "0" ] || [ "$REV" = "1" ]; then
++		I2C_PORT=$((0))
++	else
++		I2C_PORT=$((1))
++	fi
+   fi
+   SETTING=$(sed -n 1p /home/pi/settings/defaults/current.dei)
+   RUNNING=$(sed -n 1p /home/pi/settings/defaults/running)
