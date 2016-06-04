@@ -12,14 +12,14 @@ sudo apt-get install -y i2c-tools libi2c-dev python-smbus
 # Get latest stable version from GitHub
 echo -e "\nDownloading current master version:"
 cd $DIR
-wget https://raw.githubusercontent.com/dooklink/gbs-control/master/gbs-control.zip
+wget https://github.com/alexey1234/bananapi_gbs_control/archive/master.zip
 
 # Unpack scripts & default settings
 echo -e "\nUnpacking zip package:"
-unzip -oq $DIR/gbs-control.zip
+unzip -oq $DIR/master.zip
 
 echo -e "\nRemove zip package:"
-rm $DIR/gbs-control.zip
+rm $DIR/master.zip
 
 # Patch /etc/inittab to allow for automatic login.
 # and to use xterm-mono for B&W (monochrome) interactive terminal.
