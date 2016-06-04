@@ -13,7 +13,7 @@
 -  else
 -    I2C_PORT=$((1))
 +  BANANA=$(cat /proc/cpuinfo | grep Hardware | awk '{ print $3 }' | tr -d '\n')
-+  if ["$BANANA" = "sun7i"]; then
++  if [ "$BANANA" = "sun7i" ]; then
 +	I2C_PORT=$((2))
 +  elif
 +	REVISION=$(cat /proc/cpuinfo | grep revision)
