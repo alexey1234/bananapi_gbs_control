@@ -16,13 +16,13 @@ wget https://github.com/alexey1234/bananapi_gbs_control/archive/master.zip
 
 # Unpack scripts & default settings
 echo -e "\nUnpacking zip package:"
-unzip -oq $DIR/master.zip
-
+# unzip -oq $DIR/master.zip
+tar -xvf master.zip --exclude='.git*' --strip-components 1
 echo -e "\nRemove zip package:"
 rm $DIR/master.zip
 
-cp -f -r $DIR/bananapi_gbs_control-master/* $DIR/
-rm -fr $DIR/bananapi_gbs_control-master
+# cp -f -r $DIR/bananapi_gbs_control-master/* $DIR/
+# rm -fr $DIR/bananapi_gbs_control-master
 
 # Patch /etc/inittab to allow for automatic login.
 # and to use xterm-mono for B&W (monochrome) interactive terminal.
