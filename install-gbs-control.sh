@@ -6,7 +6,7 @@ echo -e "\nInstall location is: "$DIR
 
 # Update sources and install I2C components.
 echo -e "\nUpdating sources & installing i2c utils:"
-sudo apt-get update
+# sudo apt-get update
 # sudo apt-get install -y i2c-tools libi2c-dev python-smbus
 
 # Get latest stable version from GitHub
@@ -22,7 +22,7 @@ echo -e "\nRemove zip package:"
 rm $DIR/master.zip
 
 cp -f -r $DIR/bananapi_gbs_control-master/* $DIR/
-# rm -fr $DIR/bananapi_gbs_control-master
+rm -fr $DIR/bananapi_gbs_control-master
 
 # Patch /etc/inittab to allow for automatic login.
 # and to use xterm-mono for B&W (monochrome) interactive terminal.
@@ -42,8 +42,8 @@ sudo patch -bN -F 6 /etc/default/triggerhappy $DIR/scripts/patch.triggerhappy
 # Move triggerhappy files to /etc/triggerhappy/triggers.d
 # Detect Banana
 BANANA=$(cat /proc/cpuinfo | grep Hardware | awk '{ print $3 }' | tr -d '\n')
-if ["$BANANA" = "sun7i"]; then
-	echo -e "BananaPi detected"
+if [ "$BANANA" == "sun7i" ]; then
+	echo -e "\nBananaPi detected"
 	sudo cp thd/triggerhappy_banana/* /etc/triggerhappy/triggers.d/
 	sudo patch -bN -F 6 $DIR/scripts/Adafruit_I2C.py $DIR/scripts/patch.adaftuit
 	sudo patch -bN -F 6 $DIR/adaptive_deinterlace.sh $DIR/scripts/patch.adaptive_deinterlace
