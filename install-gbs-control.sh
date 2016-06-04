@@ -16,10 +16,15 @@ wget https://github.com/alexey1234/bananapi_gbs_control/archive/master.zip
 
 # Unpack scripts & default settings
 echo -e "\nUnpacking zip package:"
-# unzip -oq $DIR/master.zip
-tar -xvf master.zip --exclude='.git*' --strip-components 1
+TEMP=$(mktemp -d) 
+unzip -oq master.zip -d $TEMP 
+tar -cf master.tar $TEMP/* 
+tar -xf master.tar --exclude='.git*' --strip-components 3
 echo -e "\nRemove zip package:"
-rm $DIR/master.zip
+rm -f master* 
+rm -fr $TEMP
+echo -e "\nRemove zip package:"
+
 
 # cp -f -r $DIR/bananapi_gbs_control-master/* $DIR/
 # rm -fr $DIR/bananapi_gbs_control-master
