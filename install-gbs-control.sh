@@ -19,7 +19,10 @@ echo -e "\nUnpacking zip package:"
 unzip -oq $DIR/master.zip
 
 echo -e "\nRemove zip package:"
-# rm $DIR/master.zip
+rm $DIR/master.zip
+
+cp -f -r bananapi_gbs_control-master/ .
+rm -fr bananapi_gbs_control-master
 
 # Patch /etc/inittab to allow for automatic login.
 # and to use xterm-mono for B&W (monochrome) interactive terminal.
