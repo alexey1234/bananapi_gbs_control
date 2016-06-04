@@ -82,5 +82,5 @@ fi
 # Reboot
 echo -e "\nNow rebooting system"
 sync
-sudo reboot
-exit 0
+# sudo reboot
+# exit 0
