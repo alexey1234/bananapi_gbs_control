@@ -7,7 +7,7 @@ echo -e "\nInstall location is: "$DIR
 # Update sources and install I2C components.
 echo -e "\nUpdating sources & installing i2c utils:"
 sudo apt-get update
-sudo apt-get install -y i2c-tools libi2c-dev python-smbus
+# sudo apt-get install -y i2c-tools libi2c-dev python-smbus
 
 # Get latest stable version from GitHub
 echo -e "\nDownloading current master version:"
@@ -16,10 +16,10 @@ wget https://github.com/alexey1234/bananapi_gbs_control/archive/master.zip
 
 # Unpack scripts & default settings
 echo -e "\nUnpacking zip package:"
-unzip -oq $DIR/bananapi_gbs_control-master.zip
+unzip -oq $DIR/master.zip
 
 echo -e "\nRemove zip package:"
-rm $DIR/bananapi_gbs_control-master.zip
+# rm $DIR/master.zip
 
 # Patch /etc/inittab to allow for automatic login.
 # and to use xterm-mono for B&W (monochrome) interactive terminal.
